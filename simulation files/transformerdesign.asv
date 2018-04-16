@@ -29,23 +29,21 @@ Lm_reasonable = Vs*D/(delta_iLm*fsw); %bu formüle bir bakalým sonra
 
 %% upper section result in a Lm value of 28.8µH, lets choose a values of 40µ just to be safe
 u0 = 4*pi*10^-7;
-L_desired = 35*10^-6;
+L_desired = 40*10^-6;
+N = ;
 
-N =12; % give some numeros
-AL_approximate = L_desired/N^2;%*10^9; %nH/turn^2
 
 
 %% will be chosen 
-AL = 250*10^-9; %will be chosen
-Core_area= 98e-6; %will be chosen
-N = 12; %will be chosen
+AL = ; %will be chosen
+Core_area= ; %will be chosen
+N = ; %will be chosen
 L = AL*N^2; %will be chosen
-length_effective= 44e-3; %will be chosen
-ur = 89; %will be chosen
+length_effective= ; %will be chosen
+ur = ; %will be chosen
 u = u0*ur;
 Core_reluctance = length_effective/(u*Core_area);
 Core_reluctance2 = N^2/L; %maybe and easy and alternative way
-Bpeak = N*ILm_max/(Core_area*Core_reluctance);
 
 
 
