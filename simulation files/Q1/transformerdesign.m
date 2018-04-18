@@ -1,7 +1,7 @@
 Vo = 12;
 Vs = 24;
 P = 80 ; %W
-fsw = 100000; %hz bunu yüksek attým ama reasonable olduðunu düþünüyorum
+fsw = 10000; %hz bunu yüksek attým ama reasonable olduðunu düþünüyorum
 Ts = 1/fsw;
 Iout = P/Vo;
 D = 0.4; %just an assumption güzel bir sayý
@@ -29,23 +29,42 @@ Lm_reasonable = Vs*D/(delta_iLm*fsw); %bu formüle bir bakalým sonra
 
 %% upper section result in a Lm value of 28.8µH, lets choose a values of 40µ just to be safe
 u0 = 4*pi*10^-7;
-L_desired = 35*10^-6;
+L_desired = 1100*10^-6;
 
 N =12; % give some numeros
 AL_approximate = L_desired/N^2;%*10^9; %nH/turn^2
 
 
-%% will be chosen 
-AL = 250*10^-9; %will be chosen
-Core_area= 98e-6; %will be chosen
-N = 12; %will be chosen
+%% will be chosen https://www.digikey.com/product-detail/en/epcos-tdk/B65813J0250A041/495-5276-ND/3914229
+AL = 160*10^-9; %will be chosen
+Core_area= 200e-6; %will be chosen
+N = 40; %will be chosen
 L = AL*N^2; %will be chosen
-length_effective= 44e-3; %will be chosen
-ur = 89; %will be chosen
+length_effective= 70e-3; %will be chosen
+ur = 45; %will be chosen
 u = u0*ur;
 Core_reluctance = length_effective/(u*Core_area);
 Core_reluctance2 = N^2/L; %maybe and easy and alternative way
 Bpeak = N*ILm_max/(Core_area*Core_reluctance);
+Core_volume= 14000*10e-9; %m3
+Core_loss = 100*Core_volume*1000;%abartilibiraz
+%%
+copperarea = pi*(1.29/2)^2*N; %mm2
+windowarea = 20.8*7; %% mm2
+FF = copperarea/windowarea;
+copperlength = ((2*20.8)+(2*7))*N/1000; %m 
+approximate_copper_resistance = 1.68e-8*copperlength/(pi*(1.29/2*0.001)^2);
+%% by neglecting the rc value
+Vout_ripplepercent = 10;
+delta_Vo = Vo*Vout_ripplepercent/100;
+Capacitor_value = D/(Rload*(delta_Vo/Vo)*fsw);
+
+%% switching element loss
+mean_current = Iout/2; %due to the 2:1 ratio of the transformer
+Rds_on = 0.16;
+conduction_loss = mean_current^2*Rds_on;
+switching_loss = 10*fsw*28e-9; % 41e-9 is the total gate charge V*Q*f is used.
+switching_element_loss = switching_loss +conduction_loss;
 
 
 
@@ -53,6 +72,30 @@ Bpeak = N*ILm_max/(Core_area*Core_reluctance);
 
 
 
+
+
+
+
+
+
+
+
+
+
+%%
+% AL = 250*10^-9; %will be chosen
+% Core_area= 98e-6; %will be chosen
+% N = 12; %will be chosen
+% L = AL*N^2; %will be chosen
+% length_effective= 44e-3; %will be chosen
+% ur = 89; %will be chosen
+% u = u0*ur;
+% Core_reluctance = length_effective/(u*Core_area);
+% Core_reluctance2 = N^2/L; %maybe and easy and alternative way
+% Bpeak = N*ILm_max/(Core_area*Core_reluctance);
+% Core_volume= 4310*10e-9; %m3
+% Core_loss = 8000*Core_volume*1000;%abartilibiraz
+%%
 
 
 
