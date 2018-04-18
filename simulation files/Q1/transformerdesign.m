@@ -52,12 +52,19 @@ Core_loss = 100*Core_volume*1000;%abartilibiraz
 copperarea = pi*(1.29/2)^2*N; %mm2
 windowarea = 20.8*7; %% mm2
 FF = copperarea/windowarea;
+copperlength = ((2*20.8)+(2*7))*N/1000; %m 
+approximate_copper_resistance = 1.68e-8*copperlength/(pi*(1.29/2*0.001)^2);
 %% by neglecting the rc value
 Vout_ripplepercent = 10;
 delta_Vo = Vo*Vout_ripplepercent/100;
 Capacitor_value = D/(Rload*(delta_Vo/Vo)*fsw);
 
-
+%% switching element loss
+mean_current = Iout/2; %due to the 2:1 ratio of the transformer
+Rds_on = 0.16;
+conduction_loss = mean_current^2*Rds_on;
+switching_loss = 10*fsw*28e-9; % 41e-9 is the total gate charge V*Q*f is used.
+switching_element_loss = switching_loss +conduction_loss;
 
 
 
