@@ -67,40 +67,22 @@ switching_loss = 10*fsw*28e-9; % 41e-9 is the total gate charge V*Q*f is used.
 switching_element_loss = switching_loss +conduction_loss;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%
-% AL = 250*10^-9; %will be chosen
-% Core_area= 98e-6; %will be chosen
-% N = 12; %will be chosen
-% L = AL*N^2; %will be chosen
-% length_effective= 44e-3; %will be chosen
-% ur = 89; %will be chosen
-% u = u0*ur;
-% Core_reluctance = length_effective/(u*Core_area);
-% Core_reluctance2 = N^2/L; %maybe and easy and alternative way
-% Bpeak = N*ILm_max/(Core_area*Core_reluctance);
-% Core_volume= 4310*10e-9; %m3
-% Core_loss = 8000*Core_volume*1000;%abartilibiraz
-%%
-
-
-
-
-
+%% snubber design
+% % 2.3MHZ hiç biþi yokken
+% % 3.6uF da 1.1MHZ falan
+% % fs = 10khz
+% Ci = 3.6e-9/3;
+% fi = 2.3e6;
+% L_cct = 1/(Ci*(2*pi*fi)^2);
+% Rsnub = sqrt(L_cct/Ci);
+% C_low = L_cct*3.33^2/(12^2);
+% C_high = 10e-6/(10*1.8);
+% 
+% %% 
+% Z = 2*pi*2.3e6*2.3e-6;
+% C = 1/(2*pi*2.3e6*Z);
+% 
+% 
 
 
 
