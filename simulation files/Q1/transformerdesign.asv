@@ -46,16 +46,14 @@ u = u0*ur;
 Core_reluctance = length_effective/(u*Core_area);
 Core_reluctance2 = N^2/L; %maybe and easy and alternative way
 Bpeak = N*ILm_max/(Core_area*Core_reluctance);
-Bpeakmean = N*ILm_av/(Core_area*Core_reluctance);
 Core_volume= 14000*10e-9; %m3
-Core_loss = 5*Core_volume*1000;%abartilibiraz
+Core_loss = 100*Core_volume*1000;%abartilibiraz
 %%
 copperarea = pi*(1.29/2)^2*N; %mm2
 windowarea = 20.8*7; %% mm2
 FF = copperarea/windowarea;
 copperlength = ((2*20.8)+(2*7))*N/1000; %m 
 approximate_copper_resistance = 1.68e-8*copperlength/(pi*(1.29/2*0.001)^2);
-copper_loss = Iout^2*approximate_copper_resistance*2;
 %% by neglecting the rc value
 Vout_ripplepercent = 10;
 delta_Vo = Vo*Vout_ripplepercent/100;
@@ -63,12 +61,12 @@ Capacitor_value = D/(Rload*(delta_Vo/Vo)*fsw);
 
 %% switching element loss
 mean_current = Iout/2; %due to the 2:1 ratio of the transformer
-Rds_on = 0.125;
+Rds_on = 0.16;
 conduction_loss = mean_current^2*Rds_on;
-switching_loss = 10*fsw*50e-9; % 41e-9 is the total gate charge V*Q*f is used.
+switching_loss = 10*fsw*28e-9; % 41e-9 is the total gate charge V*Q*f is used.
 switching_element_loss = switching_loss +conduction_loss;
-%% diode loss
-diode_loss = 0.66*Iout;
+
+
 %% snubber design
 % 2.3MHZ hiç biþi yokken
 % 3.6uF da 1.1MHZ falan
@@ -90,11 +88,7 @@ Vsn = 157/2-24;
 disndt = -(Vsn-2*12)/Llk;
 ipeak = 39.4;
 ts = Llk/(Vsn-2*12)*ipeak;
-Psn = Vsn*ipeak*ts*fsw/2;
-Psn2 = 0.5*Llk*ipeak^2*Vsn*fs/(Vsn-2*12);
-Rsn = Vsn^2/(Psn);
-delta_Vsn = 0.10; % 10percent
-Csn = 1/(Rsn*fsw*delta_Vsn);
+Psn = Vsn*ipeak*ts*fsw/2=
 
 
 
