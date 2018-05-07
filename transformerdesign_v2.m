@@ -11,7 +11,7 @@ length_effective = 2*(23.45e-3+23.45e-3+23.24e-3);
 %equivalent reluctance is equal to the one in the middle.
 reluctance_nogap = length_effective/(u*core_area_inner);
 Al_nogap = 1/reluctance_nogap;
-air_gap = 1e-3; %m
+air_gap = 2e-3; %m
 reluctance_airgap = 2*air_gap/(u0*core_area_inner);
 Al_gap = 1/(reluctance_nogap+reluctance_airgap);
 
@@ -29,3 +29,13 @@ ur_e = length_effective/((reluctance_nogap+reluctance_airgap)*core_area_inner)*1
 
 ILm_max = 10;
 Bpeak = N*ILm_max/(core_area_inner*(reluctance_nogap+reluctance_airgap));
+L_obtained = Al_gap*N1^2;
+
+estimate_cablelength1 = (17e-3+24.65e-3)*2*N1;
+estimate_cablelength2 = (17e-3+24.65e-3)*2*N2;
+%%
+Rin = 50;
+Cin = 0.47e-6;
+la = Rin*Cin*4*10^4
+imp = 2*pi*10000*Cin
+1/Rin
