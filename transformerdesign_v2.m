@@ -34,8 +34,10 @@ L_obtained = Al_gap*N1^2;
 estimate_cablelength1 = (17e-3+24.65e-3)*2*N1;
 estimate_cablelength2 = (17e-3+24.65e-3)*2*N2;
 %%
-Rin = 50;
-Cin = 0.47e-6;
-la = Rin*Cin*4*10^4
-imp = 2*pi*10000*Cin
-1/Rin
+
+resistivity = 1.68e-8;
+rLm1 = resistivity*estimate_cablelength1*1.1/(pi*(1.29e-3/2)^2);
+rLm2 = resistivity*estimate_cablelength2*1.1/(pi*(2.3e-3/2)^2);
+
+
+
