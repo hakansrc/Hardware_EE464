@@ -39,5 +39,13 @@ resistivity = 1.68e-8;
 rLm1 = resistivity*estimate_cablelength1*1.1/(pi*(1.29e-3/2)^2);
 rLm2 = resistivity*estimate_cablelength2*1.1/(pi*(2.3e-3/2)^2);
 
+%%
+Iout = 80/12;
+J = 5; %A/mm2
+copper2_area = Iout/J
+copper2_rad = sqrt(copper2_area/pi)
+
+
+
 
 
