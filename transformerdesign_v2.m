@@ -4,7 +4,7 @@ u0 = 4*pi*10^-7;
 u = u0*ur;
 core_area_inner = 17e-3*24.65e-3;
 core_area_edges = 8.5e-3*24.65e-3;
-length_effective = 2*(23.45e-3+23.45e-3+23.24e-3);
+length_effective = 2*(23.43e-3+23.43e-3+23.83e-3);
 % we can take the inner core area to calculate reluctance with the
 % effective lenthh, since the windings will be in the middle of the
 % transformer core and the sides are parallelly connected reluctance whose
@@ -40,12 +40,12 @@ rLm1 = resistivity*estimate_cablelength1*1.1/(pi*(1.29e-3/2)^2);
 rLm2 = resistivity*estimate_cablelength2*1.1/(pi*(2.3e-3/2)^2);
 
 %%
-Iout = 80/12;
-J = 5; %A/mm2
-copper2_area = Iout/J
-copper2_rad = sqrt(copper2_area/pi)
-
-
+% Iout = 80/12;
+% J = 5; %A/mm2
+% copper2_area = Iout/J
+% copper2_rad = sqrt(copper2_area/pi)
+% 
+reluctance_total = reluctance_nogap+reluctance_airgap
 
 
 
